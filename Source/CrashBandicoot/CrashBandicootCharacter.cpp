@@ -9,6 +9,8 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/SphereComponent.h"
+#include "SpinAttack.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ACrashBandicootCharacter
@@ -48,6 +50,7 @@ void ACrashBandicootCharacter::SetupPlayerInputComponent(class UInputComponent* 
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("Spin", IE_Pressed, this, &ACrashBandicootCharacter::SpinAttack);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ACrashBandicootCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ACrashBandicootCharacter::MoveRight);
@@ -88,6 +91,14 @@ void ACrashBandicootCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVect
 void ACrashBandicootCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 		StopJumping();
+}
+
+void ACrashBandicootCharacter::SpinAttack()
+{
+	/*UE_LOG(LogTemp, Warning, TEXT("SpinAttack from Character"));
+	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative, false);
+	ASpinAttack* SpinSphere =  GetWorld()->SpawnActor<ASpinAttack>(ASpinAttack::StaticClass(), RootComponent->GetComponentTransform());
+	SpinSphere->AttachToComponent(RootComponent, Rules);*/
 }
 
 void ACrashBandicootCharacter::TurnAtRate(float Rate)
