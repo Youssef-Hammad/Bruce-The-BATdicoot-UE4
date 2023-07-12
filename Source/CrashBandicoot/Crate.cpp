@@ -25,6 +25,8 @@ ACrate::ACrate()
 void ACrate::BeginPlay()
 {
 	Super::BeginPlay();
+
+	
 	
 }
 
@@ -37,6 +39,7 @@ void ACrate::Tick(float DeltaTime)
 
 float ACrate::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Damage Applied to Crate"));
 	Destroy();
 	return 0.f;
 }

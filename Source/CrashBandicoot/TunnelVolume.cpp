@@ -39,7 +39,7 @@ void ATunnelVolume::Tick(float DeltaTime)
 
 void ATunnelVolume::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Begin OtherActor: %s"), *OtherActor->GetName());
+	//UE_LOG(LogTemp, Warning, TEXT("Begin OtherActor: %s"), *OtherActor->GetName());
 	if (OtherActor->GetName().Contains("ThirdPersonCharacter"))
 	{
 		TSubclassOf<UTunnelCamModifier> CameraModifier = UTunnelCamModifier::StaticClass();
@@ -49,7 +49,7 @@ void ATunnelVolume::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActo
 
 void ATunnelVolume::OnBoxEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("End OtherActor: %s"), *OtherActor->GetName());
+	//UE_LOG(LogTemp, Warning, TEXT("End OtherActor: %s"), *OtherActor->GetName());
 	if(OtherActor->GetName().Contains("ThirdPersonCharacter"))
 		UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->RemoveCameraModifier(CamModifier);
 }
