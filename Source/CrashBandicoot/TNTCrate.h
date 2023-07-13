@@ -9,6 +9,9 @@
 /**
  * 
  */
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FIsBombTriggered, FTimerHandle, BombTimer);
+
 UCLASS()
 class CRASHBANDICOOT_API ATNTCrate : public ACrate
 {
@@ -26,9 +29,17 @@ public:
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
+	void MyDestroy();
+
 	bool isHit;
 
 	UPROPERTY(EditAnywhere)
 	FVector LaunchVelocity;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FTimerHandle BombTimerHandle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintAssignable)
+		FIsBombTriggered BombTriggeredDelegate;
 	
 };

@@ -32,7 +32,16 @@ void ATNTCrate::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPr
 			Cast<ACrashBandicootCharacter>(OtherActor)->LaunchCharacter(LaunchVelocity, false, true);
 			isHit = true;
 			
+			
+			GetWorldTimerManager().SetTimer(BombTimerHandle, this, &ATNTCrate::MyDestroy, 3.0f, false, 3.0f);
+
+			BombTriggeredDelegate.Broadcast(BombTimerHandle);
 		}
 
 	}
+}
+
+void ATNTCrate::MyDestroy()
+{
+	Destroy();
 }
