@@ -22,7 +22,7 @@ public:
 	virtual bool ModifyCamera(float DeltaTime, struct FMinimalViewInfo& InOutPOV) override;
 
 	UPROPERTY(EditAnywhere)
-	FVector TunnelZ = FVector(0.f,0.f,200.f);
+	FVector TunnelZ = FVector(0.f,0.f,300.f);
 
 private:
 
