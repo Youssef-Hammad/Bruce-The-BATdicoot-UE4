@@ -10,7 +10,7 @@ UTunnelCamModifier::UTunnelCamModifier()
 {
 	AlphaInTime = .5f;
 	AlphaOutTime = .5f;
-	InterpSpeed = 3.f;
+	InterpSpeed = 6.f;
 	TunnelZ = FVector(0.f, 0.f, 300.f);
 	TunnelCamRotationX = FRotator(30, 0, 0);
 }
@@ -22,6 +22,6 @@ bool UTunnelCamModifier::ModifyCamera(float DeltaTime, struct FMinimalViewInfo& 
 	APlayerCameraManager* CameraManager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
 	InOutPOV.Location = FMath::VInterpTo(CameraManager->GetCameraLocation(), Target, DeltaTime, InterpSpeed);
 	InOutPOV.Rotation = FMath::RInterpTo(CameraManager->GetCameraRotation(), RTarget, DeltaTime, InterpSpeed);
-	UE_LOG(LogTemp, Warning, TEXT("Triggered"));
+	//UE_LOG(LogTemp, Warning, TEXT("Triggered"));
 	return true;
 }

@@ -55,11 +55,11 @@ void ACrashCamera::Tick(float DeltaTime)
 
 	rot_NewRotation.Pitch = Pitch_Offset;
 	rot_NewRotation.Roll = 0;
-	SpringArm->SetWorldLocation(vec_NewLocation);
+	SpringArm->SetWorldLocation(FMath::VInterpTo(SpringArm->GetComponentLocation(),vec_NewLocation,DeltaTime,6.0f));
 
 	//UE_LOG(LogTemp, Warning, TEXT("New Rotation: Roll: %f   Pitch: %f  Yaw: %f\n"), rot_NewRotation.Roll, rot_NewRotation.Pitch, rot_NewRotation.Yaw);
 
-	SpringArm->SetWorldRotation(rot_NewRotation);
+	SpringArm->SetWorldRotation(FMath::RInterpTo(SpringArm->GetComponentRotation(),rot_NewRotation,DeltaTime,6.0f));
 
 }
 

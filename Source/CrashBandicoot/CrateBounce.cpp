@@ -21,9 +21,10 @@ void ACrateBounce::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, 
 	if (OtherActor->GetName().Contains("ThirdPersonCharacter"))
 	{
 		//UE_LOG(LogTemp, Warning, TEXT("Hit Normal Z: %f"), Hit.Normal.Z);
-		if (Hit.Normal.Z == -1.f)
+		if (Hit.Normal.Z == -1.f || Hit.Normal.Z == 1.f)
 		{
-			Cast<ACrashBandicootCharacter>(OtherActor)->LaunchCharacter(LaunchVelocity, false, true);
+			if(Hit.Normal.Z==-1.f)
+				Cast<ACrashBandicootCharacter>(OtherActor)->LaunchCharacter(LaunchVelocity, false, true);
 			Hits--;
 			if(Hits<= 0)
 				Destroy();
