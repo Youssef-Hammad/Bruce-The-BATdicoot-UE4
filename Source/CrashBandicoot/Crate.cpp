@@ -5,6 +5,8 @@
 #include "Crate.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "CrashBandicootCharacter.h"
 
 // Sets default values
 ACrate::ACrate()
@@ -18,14 +20,19 @@ ACrate::ACrate()
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	StaticMesh->SetupAttachment(RootComp);
 
+	bIsDimensionActive = false;
 
+	bIsFirstDimension = true;
 }
 
 // Called when the game starts or when spawned
 void ACrate::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	Player = Cast<ACrashBandicootCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	if (Player == NULL)
+		UE_LOG(LogTemp, Error, TEXT("Failed to cast player in Crate.cpp"));
 }
 
 // Called every frame
@@ -33,12 +40,37 @@ void ACrate::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (bIsDimensionActive)
+	{
+		if (bIsFirstDimension != Player->bIsFirstDimension)
+		{
+			this->SetActorHiddenInGame(true);
+			StaticMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			//StaticMesh->SetSimulatePhysics(false);
+		}
+		else
+		{
+			this->SetActorHiddenInGame(false);
+			StaticMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+			//StaticMesh->SetSimulatePhysics(true);
+		}
+	}
+	else
+	{
+		this->SetActorHiddenInGame(false);
+		StaticMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		///StaticMesh->SetSimulatePhysics(true);
+	}
+
 }
 
 float ACrate::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Damage Applied to Crate"));
-	Destroy();
+	if ((bIsDimensionActive && bIsFirstDimension == Player->bIsFirstDimension) || !bIsDimensionActive)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Damage Applied to Crate"));
+		Destroy();
+	}
 	return 0.f;
 }
 

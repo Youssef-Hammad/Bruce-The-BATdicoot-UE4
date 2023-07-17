@@ -17,6 +17,8 @@
 
 ACrashBandicootCharacter::ACrashBandicootCharacter()
 {
+
+	bIsFirstDimension = true;
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
@@ -51,6 +53,7 @@ void ACrashBandicootCharacter::SetupPlayerInputComponent(class UInputComponent* 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAction("Spin", IE_Pressed, this, &ACrashBandicootCharacter::SpinAttack);
+	PlayerInputComponent->BindAction("SwitchDimension", IE_Pressed, this, &ACrashBandicootCharacter::SwitchDimension);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ACrashBandicootCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ACrashBandicootCharacter::MoveRight);
@@ -99,6 +102,12 @@ void ACrashBandicootCharacter::SpinAttack()
 	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative,true);
 	ASpinAttack* SpinSphere =  GetWorld()->SpawnActor<ASpinAttack>(ASpinAttack::StaticClass(), RootComponent->GetComponentTransform());
 	SpinSphere->AttachToActor(this, Rules);
+}
+
+void ACrashBandicootCharacter::SwitchDimension()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Dimensions Switched"));
+	bIsFirstDimension = !bIsFirstDimension;
 }
 
 void ACrashBandicootCharacter::TurnAtRate(float Rate)

@@ -22,6 +22,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool bIsFirstDimension;
+
 protected:
 
 	/** Resets HMD orientation in VR. */
@@ -52,6 +55,10 @@ protected:
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
 	void SpinAttack();
+
+	void SwitchDimension();
+
+	
 
 protected:
 	// APawn interface
