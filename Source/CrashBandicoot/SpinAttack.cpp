@@ -46,7 +46,7 @@ void ASpinAttack::Tick(float DeltaTime)
 
 void ASpinAttack::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("OverlappedComp: %s\tOtherActor: %s\tOtherComp: %s"),*OverlappedComp->GetName(),*OtherActor->GetName(),*OtherComp->GetName());
+	//UE_LOG(LogTemp, Warning, TEXT("OverlappedComp: %s\tOtherActor: %s\tOtherComp: %s"),*OverlappedComp->GetName(),*OtherActor->GetName(),*OtherComp->GetName());
 	//if(OtherActor->GetName.Contains())
 	UGameplayStatics::ApplyDamage(OtherActor, BaseDamage, UGameplayStatics::GetPlayerController(GetWorld(), 0), UGameplayStatics::GetPlayerPawn(GetWorld(), 0), TSubclassOf<UDamageType>());
 }

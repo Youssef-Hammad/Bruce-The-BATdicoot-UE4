@@ -27,7 +27,7 @@ void ATNTCrate::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPr
 	if (OtherActor->GetName().Contains("ThirdPersonCharacter"))
 	{
 		//UE_LOG(LogTemp, Warning, TEXT("Hit Normal Z: %f"), Hit.Normal.Z);
-		if (Hit.Normal.Z < -.001f&&!isHit)
+		if (Hit.Normal.Z == -1.f&&!isHit)
 		{
 			Cast<ACrashBandicootCharacter>(OtherActor)->LaunchCharacter(LaunchVelocity, false, true);
 			isHit = true;

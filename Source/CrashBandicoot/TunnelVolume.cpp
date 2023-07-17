@@ -43,14 +43,25 @@ void ATunnelVolume::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActo
 	if (OtherActor->GetName().Contains("ThirdPersonCharacter"))
 	{
 		TSubclassOf<UTunnelCamModifier> CameraModifier = UTunnelCamModifier::StaticClass();
-		CamModifier = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->AddNewCameraModifier(CameraModifier);
+		CamModifier = Cast<UTunnelCamModifier>(UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->AddNewCameraModifier(CameraModifier));
+		if (CamModifier != NULL)
+		{
+			CamModifier->TunnelZ = FVector(0, 0, 300.f);
+			CamModifier->TunnelCamRotationX = FRotator(30, 0, 0);
+		}
+		else
+			UE_LOG(LogTemp, Error, TEXT("Failed to cast Camera Modifier"));
 	}
 }
 
 void ATunnelVolume::OnBoxEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("End OtherActor: %s"), *OtherActor->GetName());
-	if(OtherActor->GetName().Contains("ThirdPersonCharacter"))
-		UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->RemoveCameraModifier(CamModifier);
+	UE_LOG(LogTemp, Warning, TEXT("End OtherActor: %s"), *OtherActor->GetName());
+	if (OtherActor->GetName().Contains("ThirdPersonCharacter"))
+	{
+		CamModifier->TunnelZ = FVector(0, 0, 0);
+		CamModifier->TunnelCamRotationX = FRotator(0, 0, 0);
+
+	}
 }
 

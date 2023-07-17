@@ -34,7 +34,7 @@ public:
 
 private:
 
-	UCameraModifier* CamModifier;
+	class UTunnelCamModifier* CamModifier;
 
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	class UBoxComponent* BoxCollision;

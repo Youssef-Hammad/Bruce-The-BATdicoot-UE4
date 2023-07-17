@@ -95,7 +95,7 @@ void ACrashBandicootCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVect
 
 void ACrashBandicootCharacter::SpinAttack()
 {
-	UE_LOG(LogTemp, Warning, TEXT("SpinAttack from Character"));
+	//UE_LOG(LogTemp, Warning, TEXT("SpinAttack from Character"));
 	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative,true);
 	ASpinAttack* SpinSphere =  GetWorld()->SpawnActor<ASpinAttack>(ASpinAttack::StaticClass(), RootComponent->GetComponentTransform());
 	SpinSphere->AttachToActor(this, Rules);

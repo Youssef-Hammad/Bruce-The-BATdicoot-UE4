@@ -25,8 +25,6 @@ ACrate::ACrate()
 void ACrate::BeginPlay()
 {
 	Super::BeginPlay();
-
-	
 	
 }
 
