@@ -7,9 +7,6 @@
 void AMetalBounceCrate::BeginPlay()
 {
     Super::BeginPlay();
-
-    StaticMesh->OnComponentHit.AddDynamic(this, &AMetalBounceCrate::OnHit);
-	LaunchVelocity = FVector(0, 0, 600);
 }
 
 void AMetalBounceCrate::Tick(float DeltaTime)

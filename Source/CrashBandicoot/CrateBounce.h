@@ -24,14 +24,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	virtual void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit) override;
 	
 private:
 	
 	UPROPERTY(EditAnywhere, meta = (AloowPrivateAccess = "true"))
 	int Hits;
-
-	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	FVector LaunchVelocity;
 };

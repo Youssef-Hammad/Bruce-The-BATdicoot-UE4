@@ -12,6 +12,7 @@ AExplosionActor::AExplosionActor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	ExplosionParticles = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("ExplosionParticles"));
+	RootComponent = ExplosionParticles;
 	RadialBaseDamage = 1.0f;
 	DamageRadius = 80.f;
 

@@ -27,15 +27,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	virtual void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit) override;
 
 	void MyDestroy();
 
 	bool isHit;
 
-	UPROPERTY(EditAnywhere)
-	FVector LaunchVelocity;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FTimerHandle BombTimerHandle;

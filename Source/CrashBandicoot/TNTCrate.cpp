@@ -11,7 +11,6 @@
 ATNTCrate::ATNTCrate()
 {
 	isHit = false;
-	LaunchVelocity = FVector(0, 0, 600);
 
 }
 

@@ -33,10 +33,16 @@ public:
 
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
+	UFUNCTION()
+	virtual void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
 	UPROPERTY(EditAnywhere)
 		class USceneComponent* RootComp;
 
 	UPROPERTY(EditAnywhere)
 		class UStaticMeshComponent* StaticMesh;
+
+	UPROPERTY(EditAnywhere)
+		FVector LaunchVelocity;
 
 };

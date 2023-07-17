@@ -23,6 +23,8 @@ ACrate::ACrate()
 	bIsDimensionActive = false;
 
 	bIsFirstDimension = true;
+
+	LaunchVelocity = FVector(0, 0, 600.f);
 }
 
 // Called when the game starts or when spawned
@@ -33,6 +35,8 @@ void ACrate::BeginPlay()
 	Player = Cast<ACrashBandicootCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	if (Player == NULL)
 		UE_LOG(LogTemp, Error, TEXT("Failed to cast player in Crate.cpp"));
+
+	StaticMesh->OnComponentHit.AddDynamic(this, &ACrate::OnHit);
 }
 
 // Called every frame
@@ -72,5 +76,20 @@ float ACrate::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AC
 		Destroy();
 	}
 	return 0.f;
+}
+
+void ACrate::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (OtherActor->GetName().Contains("ThirdPersonCharacter") && (bIsDimensionActive && bIsFirstDimension == Player->bIsFirstDimension) || !bIsDimensionActive)
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("Hit Normal Z: %f"), Hit.Normal.Z);
+		if (Hit.Normal.Z == -1.f || Hit.Normal.Z == 1.f)
+		{
+			if (Hit.Normal.Z == -1.f)
+				Cast<ACrashBandicootCharacter>(OtherActor)->LaunchCharacter(LaunchVelocity, false, true);
+			Destroy();
+		}
+
+	}
 }
 

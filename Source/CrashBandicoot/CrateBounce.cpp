@@ -7,12 +7,10 @@
 void ACrateBounce::BeginPlay()
 {
 	Super::BeginPlay();
-	StaticMesh->OnComponentHit.AddDynamic(this, &ACrateBounce::OnHit);
 }
 
 ACrateBounce::ACrateBounce()
 {
-	LaunchVelocity = FVector(0, 0, 600);
 	Hits = 3;
 }
 
