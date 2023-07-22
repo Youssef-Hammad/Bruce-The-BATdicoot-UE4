@@ -21,7 +21,7 @@ void AEnemy::BeginPlay()
 
 	SetActorLocation(PointA);
 
-	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &AEnemy::OnBeginOverlap);
+	//GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &AEnemy::OnBeginOverlap);
 	GetMesh()->OnComponentBeginOverlap.AddDynamic(this, &AEnemy::OnBeginOverlap);
 	
 }
@@ -58,10 +58,10 @@ void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void AEnemy::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("OtherActor: %s"), *OtherActor->GetName());
+	//UE_LOG(LogTemp, Warning, TEXT("OtherActor: %s"), *OtherActor->GetName());
 	if (OtherActor->GetName().Contains("ThirdPersonCharacter"))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Killed"));
+		//UE_LOG(LogTemp, Warning, TEXT("Killed"));
 		//OtherActor->Destroy();
 		//FGenericPlatformMisc::RequestExit(false);
 	}
