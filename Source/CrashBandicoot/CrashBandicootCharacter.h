@@ -25,6 +25,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool bIsFirstDimension;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool bIsSpinning;
+
 protected:
 
 	/** Resets HMD orientation in VR. */

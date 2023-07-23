@@ -5,6 +5,7 @@
 #include "Components/SceneComponent.h"
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "CrashBandicootCharacter.h"
 
 // Sets default values
 ASpinAttack::ASpinAttack()
@@ -34,7 +35,7 @@ void ASpinAttack::BeginPlay()
 	Super::BeginPlay();
 
 	SphereCollision->OnComponentBeginOverlap.AddDynamic(this, &ASpinAttack::OnBeginOverlap);
-	
+	OnDestroyed.AddDynamic(this, &ASpinAttack::MyDestroy);
 }
 
 // Called every frame
@@ -49,5 +50,10 @@ void ASpinAttack::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Ot
 	//UE_LOG(LogTemp, Warning, TEXT("OverlappedComp: %s\tOtherActor: %s\tOtherComp: %s"),*OverlappedComp->GetName(),*OtherActor->GetName(),*OtherComp->GetName());
 	//if(OtherActor->GetName.Contains())
 	UGameplayStatics::ApplyDamage(OtherActor, BaseDamage, UGameplayStatics::GetPlayerController(GetWorld(), 0), UGameplayStatics::GetPlayerPawn(GetWorld(), 0), TSubclassOf<UDamageType>());
+}
+
+void ASpinAttack::MyDestroy(AActor* actor)
+{
+	Cast<ACrashBandicootCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->bIsSpinning = false;
 }
 

@@ -26,6 +26,8 @@ ACrashBandicootCharacter::ACrashBandicootCharacter()
 	BaseTurnRate = 45.f;
 	BaseLookUpRate = 45.f;
 
+	bIsSpinning = false;
+
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
@@ -99,6 +101,7 @@ void ACrashBandicootCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVect
 void ACrashBandicootCharacter::SpinAttack()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("SpinAttack from Character"));
+	bIsSpinning = true;
 	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative,true);
 	ASpinAttack* SpinSphere =  GetWorld()->SpawnActor<ASpinAttack>(ASpinAttack::StaticClass(), RootComponent->GetComponentTransform());
 	SpinSphere->AttachToActor(this, Rules);

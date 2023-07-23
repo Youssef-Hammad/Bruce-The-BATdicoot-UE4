@@ -17,3 +17,7 @@ float AMetalCrate::TakeDamage(float DamageAmount, FDamageEvent const& DamageEven
 {
     return 0.0f;
 }
+
+void AMetalCrate::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+}
