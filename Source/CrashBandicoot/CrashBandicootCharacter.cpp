@@ -84,6 +84,7 @@ void ACrashBandicootCharacter::KillPlayer()
 
 void ACrashBandicootCharacter::OnTakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
+	UE_LOG(LogTemp, Warning, TEXT("DamagedActor: %s\nDamageCauser: %s"), *DamagedActor->GetName(), *DamageCauser->GetName());
 	KillPlayer();
 }
 
@@ -118,10 +119,14 @@ void ACrashBandicootCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVect
 void ACrashBandicootCharacter::SpinAttack()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("SpinAttack from Character"));
-	bIsSpinning = true;
-	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative,true);
-	ASpinAttack* SpinSphere =  GetWorld()->SpawnActor<ASpinAttack>(ASpinAttack::StaticClass(), RootComponent->GetComponentTransform());
-	SpinSphere->AttachToActor(this, Rules);
+	if (!bIsSpinning)
+	{
+		bIsSpinning = true;
+		FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative, true);
+		ASpinAttack* SpinSphere = GetWorld()->SpawnActor<ASpinAttack>(ASpinAttack::StaticClass(), RootComponent->GetComponentTransform());
+		SpinSphere->AttachToActor(this, Rules);
+	}
+
 }
 
 void ACrashBandicootCharacter::SwitchDimension()

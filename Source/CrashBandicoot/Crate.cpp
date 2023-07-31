@@ -72,7 +72,7 @@ float ACrate::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AC
 {
 	if ((bIsDimensionActive && bIsFirstDimension == Player->bIsFirstDimension) || !bIsDimensionActive)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Damage Applied to Crate"));
+		UE_LOG(LogTemp, Warning, TEXT("Damage Applied to Crate\nDamageCauser: %s"),*DamageCauser->GetName());
 		Destroy();
 	}
 	return 0.f;

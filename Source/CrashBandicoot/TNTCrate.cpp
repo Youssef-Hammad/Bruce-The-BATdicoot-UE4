@@ -18,7 +18,7 @@ void ATNTCrate::BeginPlay()
 {
 	Super::BeginPlay();
 
-	StaticMesh->OnComponentHit.AddDynamic(this, &ATNTCrate::OnHit);
+	//StaticMesh->OnComponentHit.AddDynamic(this, &ATNTCrate::OnHit);
 }
 
 

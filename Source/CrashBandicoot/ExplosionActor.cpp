@@ -26,6 +26,7 @@ void AExplosionActor::BeginPlay()
 
 	ExplosionParticles->Activate();
 	UGameplayStatics::ApplyRadialDamage(GetWorld(), RadialBaseDamage, GetActorLocation(), DamageRadius, nullptr, TArray<AActor*>(), this, nullptr, true);
+	//UE_LOG(LogTemp, Warning, TEXT("Explosion Initiated with DamageRadius: %f"),DamageRadius);
 	
 }
 

@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "Components/CapsuleComponent.h"
 #include <Kismet/GameplayStatics.h>
+#include "CrashBandicootCharacter.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -62,13 +63,14 @@ void AEnemy::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 	//UE_LOG(LogTemp, Warning, TEXT("OtherActor: %s"), *OtherActor->GetName());
 	if (OtherActor->GetName().Contains("ThirdPersonCharacter"))
 	{
+		if(Cast<ACrashBandicootCharacter>(OtherActor)->bIsSpinning)
+			Destroy();
+		else
+			UGameplayStatics::ApplyDamage(OtherActor, 1.f, nullptr, this, nullptr);
 		//UE_LOG(LogTemp, Warning, TEXT("Killed"));
 		//OtherActor->Destroy();
 		//FGenericPlatformMisc::RequestExit(false);
-		UGameplayStatics::ApplyDamage(OtherActor, 1.f, nullptr, nullptr, nullptr);
 	}
-
-	if (OtherActor->GetName().Contains("SpinAttack"))
-		Destroy();
+		
 }
 
