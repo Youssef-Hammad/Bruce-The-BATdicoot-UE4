@@ -77,6 +77,16 @@ void ACrashBandicootCharacter::SetupPlayerInputComponent(class UInputComponent* 
 }
 
 
+void ACrashBandicootCharacter::KillPlayer()
+{
+	SetActorLocation(StartPosition);
+}
+
+void ACrashBandicootCharacter::OnTakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+{
+	KillPlayer();
+}
+
 void ACrashBandicootCharacter::OnResetVR()
 {
 	// If CrashBandicoot is added to a project via 'Add Feature' in the Unreal Editor the dependency on HeadMountedDisplay in CrashBandicoot.Build.cs is not automatically propagated
@@ -86,6 +96,13 @@ void ACrashBandicootCharacter::OnResetVR()
 	// or:
 	//		Comment or delete the call to ResetOrientationAndPosition below (appropriate if not supporting VR)
 	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
+}
+
+void ACrashBandicootCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	StartPosition = GetActorLocation();
+	this->OnTakeAnyDamage.AddDynamic(this, &ACrashBandicootCharacter::OnTakeDamage);
 }
 
 void ACrashBandicootCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)

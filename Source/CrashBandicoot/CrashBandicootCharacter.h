@@ -33,6 +33,8 @@ protected:
 	/** Resets HMD orientation in VR. */
 	void OnResetVR();
 
+	virtual void BeginPlay() override;
+
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
 
@@ -60,6 +62,15 @@ protected:
 	void SpinAttack();
 
 	void SwitchDimension();
+
+	FVector StartPosition;
+
+public:
+
+	void KillPlayer();
+
+	UFUNCTION()
+	void OnTakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
 
 	
 

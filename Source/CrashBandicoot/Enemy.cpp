@@ -3,6 +3,7 @@
 
 #include "Enemy.h"
 #include "Components/CapsuleComponent.h"
+#include <Kismet/GameplayStatics.h>
 
 // Sets default values
 AEnemy::AEnemy()
@@ -64,6 +65,7 @@ void AEnemy::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 		//UE_LOG(LogTemp, Warning, TEXT("Killed"));
 		//OtherActor->Destroy();
 		//FGenericPlatformMisc::RequestExit(false);
+		UGameplayStatics::ApplyDamage(OtherActor, 1.f, nullptr, nullptr, nullptr);
 	}
 
 	if (OtherActor->GetName().Contains("SpinAttack"))
