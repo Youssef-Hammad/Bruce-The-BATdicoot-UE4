@@ -28,6 +28,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool bIsSpinning;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool bGameWon;
+
 protected:
 
 	/** Resets HMD orientation in VR. */

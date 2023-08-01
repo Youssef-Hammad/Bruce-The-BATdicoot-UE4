@@ -17,7 +17,7 @@
 
 ACrashBandicootCharacter::ACrashBandicootCharacter()
 {
-
+	bGameWon = false;
 	bIsFirstDimension = true;
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -84,7 +84,7 @@ void ACrashBandicootCharacter::KillPlayer()
 
 void ACrashBandicootCharacter::OnTakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	UE_LOG(LogTemp, Warning, TEXT("DamagedActor: %s\nDamageCauser: %s"), *DamagedActor->GetName(), *DamageCauser->GetName());
+	//UE_LOG(LogTemp, Warning, TEXT("DamagedActor: %s\nDamageCauser: %s"), *DamagedActor->GetName(), *DamageCauser->GetName());
 	KillPlayer();
 }
 

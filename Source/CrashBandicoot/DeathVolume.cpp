@@ -34,6 +34,6 @@ void ADeathVolume::Tick(float DeltaTime)
 void ADeathVolume::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor->GetName().Contains("ThirdPersonCharacter"))
-		UGameplayStatics::ApplyDamage(OtherActor, 1.f, nullptr, nullptr, nullptr);
+		UGameplayStatics::ApplyDamage(OtherActor, 1.f, nullptr, this, nullptr);
 }
 
