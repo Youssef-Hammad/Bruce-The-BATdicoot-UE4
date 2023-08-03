@@ -13,7 +13,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FIsBombTriggered, FTimerHandle, BombTimer);
 
 UCLASS()
-class CRASHBANDICOOT_API ATNTCrate : public ACrate
+class BRUCETHEBATDICOOT_API ATNTCrate : public ACrate
 {
 	GENERATED_BODY()
 

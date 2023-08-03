@@ -4,26 +4,30 @@
 
 #include "CoreMinimal.h"
 #include "Crate.h"
-#include "MetalCrate.generated.h"
+#include "CrateBounce.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class CRASHBANDICOOT_API AMetalCrate : public ACrate
+class BRUCETHEBATDICOOT_API ACrateBounce : public ACrate
 {
 	GENERATED_BODY()
 
 protected:
+	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 public:
+
+	ACrateBounce();
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
-
 	virtual void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit) override;
 	
+private:
+	
+	UPROPERTY(EditAnywhere, meta = (AloowPrivateAccess = "true"))
+	int Hits;
 };

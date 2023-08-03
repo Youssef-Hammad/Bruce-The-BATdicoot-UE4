@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "DeathVolume.generated.h"
+#include "ExplosionActor.generated.h"
 
 UCLASS()
-class CRASHBANDICOOT_API ADeathVolume : public AActor
+class BRUCETHEBATDICOOT_API AExplosionActor : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ADeathVolume();
+	AExplosionActor();
 
 protected:
 	// Called when the game starts or when spawned
@@ -24,9 +24,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere)
-		class UBoxComponent* BoxCollision;
+	class UParticleSystemComponent* ExplosionParticles;
 
-	UFUNCTION()
-		void OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	UPROPERTY(EditAnywhere)
+	float RadialBaseDamage;
+
+	UPROPERTY(EditAnywhere)
+	float DamageRadius;
 
 };

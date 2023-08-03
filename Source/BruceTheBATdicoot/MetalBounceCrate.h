@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class CRASHBANDICOOT_API AMetalBounceCrate : public ACrate
+class BRUCETHEBATDICOOT_API AMetalBounceCrate : public ACrate
 {
 	GENERATED_BODY()
 

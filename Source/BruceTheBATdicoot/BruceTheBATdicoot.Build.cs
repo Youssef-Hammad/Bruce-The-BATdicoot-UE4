@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class CrashBandicoot : ModuleRules
+public class BruceTheBATdicoot : ModuleRules
 {
-	public CrashBandicoot(ReadOnlyTargetRules Target) : base(Target)
+	public BruceTheBATdicoot(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 

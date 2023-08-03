@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "MovingPlatform.generated.h"
+#include "CrashCamera.generated.h"
 
 UCLASS()
-class CRASHBANDICOOT_API AMovingPlatform : public AActor
+class BRUCETHEBATDICOOT_API ACrashCamera : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AMovingPlatform();
+	ACrashCamera();
 
 protected:
 	// Called when the game starts or when spawned
@@ -23,21 +23,25 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	bool isMovingToB;
+
+private:
 
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		FVector PointA;
+	float Pitch_Offset = -40.f;
 
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		FVector PointB;
+	class USceneComponent* DefaultRoot;
 
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		float MovementSpeed;
+	class USpringArmComponent* SpringArm;
 
-	UPROPERTY(EditAnywhere)
-		class UStaticMeshComponent* StaticMesh;
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	class UCameraComponent* FollowCamera;
 
-	UPROPERTY(EditAnywhere)
-		class UBoxComponent* BoxCollision;
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	class USplineComponent* Spline;
+
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	class ACharacter* Crash;
 
 };

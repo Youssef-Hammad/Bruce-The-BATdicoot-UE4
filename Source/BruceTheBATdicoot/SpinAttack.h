@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TunnelVolume.generated.h"
+#include "SpinAttack.generated.h"
 
 UCLASS()
-class CRASHBANDICOOT_API ATunnelVolume : public AActor
+class BRUCETHEBATDICOOT_API ASpinAttack : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ATunnelVolume();
+	ASpinAttack();
 
 protected:
 	// Called when the game starts or when spawned
@@ -23,23 +23,21 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere)
+		class USceneComponent* RootComp;
+
+	UPROPERTY(EditAnywhere)
+		class USphereComponent* SphereCollision;
+
 	UFUNCTION()
-	void OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp,
+		void OnBeginOverlap(UPrimitiveComponent* OverlappedComp,
 			AActor* OtherActor, UPrimitiveComponent* OtherComp,
 			int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	UFUNCTION()
-		void OnBoxEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-			UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	void MyDestroy(AActor* actor);
 
-private:
-
-	class UTunnelCamModifier* CamModifier;
-
-	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	class UBoxComponent* BoxCollision;
-
-	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	class USceneComponent* RootComp;
+	UPROPERTY(EditAnywhere)
+		float BaseDamage;
 
 };

@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "IdleRotation.generated.h"
+#include "DeathVolume.generated.h"
 
 UCLASS()
-class CRASHBANDICOOT_API AIdleRotation : public AActor
+class BRUCETHEBATDICOOT_API ADeathVolume : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AIdleRotation();
+	ADeathVolume();
 
 protected:
 	// Called when the game starts or when spawned
@@ -24,20 +24,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere)
-		class USceneComponent* RootComp;
-
-	UPROPERTY(EditAnywhere)
-		class UStaticMeshComponent* SM1;
-	UPROPERTY(EditAnywhere)
-		class UStaticMeshComponent* SM2;
-	UPROPERTY(EditAnywhere)
-		class UStaticMeshComponent* SM3;
-
-	UPROPERTY(EditAnywhere)
 		class UBoxComponent* BoxCollision;
-
-	UPROPERTY(EditAnywhere)
-		float RotationRate;
 
 	UFUNCTION()
 		void OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
