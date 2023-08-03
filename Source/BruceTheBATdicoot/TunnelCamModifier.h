@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class CRASHBANDICOOT_API UTunnelCamModifier : public UCameraModifier
+class BRUCETHEBATDICOOT_API UTunnelCamModifier : public UCameraModifier
 {
 	GENERATED_BODY()
 

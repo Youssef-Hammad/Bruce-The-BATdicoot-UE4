@@ -3,5 +3,5 @@
 #include "CrashBandicoot.h"
 #include "Modules/ModuleManager.h"
 
-IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, CrashBandicoot, "CrashBandicoot" );
+IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, BruceTheBATdicoot, "BruceTheBATdicoot" );
  

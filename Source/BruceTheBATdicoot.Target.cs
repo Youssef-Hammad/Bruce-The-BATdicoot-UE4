@@ -3,12 +3,12 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class CrashBandicootTarget : TargetRules
+public class BruceTheBATdicootTarget : TargetRules
 {
-	public CrashBandicootTarget(TargetInfo Target) : base(Target)
+	public BruceTheBATdicootTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.Add("CrashBandicoot");
+		ExtraModuleNames.Add("BruceTheBATdicoot");
 	}
 }

@@ -7,7 +7,7 @@
 #include "Crate.generated.h"
 
 UCLASS()
-class CRASHBANDICOOT_API ACrate : public AActor
+class BRUCETHEBATDICOOT_API ACrate : public AActor
 {
 	GENERATED_BODY()
 	
