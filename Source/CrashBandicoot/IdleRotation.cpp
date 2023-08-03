@@ -44,7 +44,7 @@ void AIdleRotation::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	FRotator newRotation = RootComponent->GetComponentRotation();
-	newRotation.Yaw += RotationRate;
+	newRotation.Yaw += RotationRate*DeltaTime;
 	RootComponent->SetWorldRotation(newRotation);
 
 }
